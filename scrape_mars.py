@@ -1,22 +1,26 @@
 # Dependencies
-import os
-import pandas as pd
-
-# Dependencies for Beautiful Soup
-import requests
-from bs4 import BeautifulSoup as bs
-
-# Dependencies for Splinter
 from splinter import Browser
+from bs4 import BeautifulSoup as bs
+import time
+
+# def browser
+def init_browser():
+    executable_path = {"executable_path": "C:/webdrivers/chromedriver"}
+    return Browser("chrome", **executable_path, headless=False)
 
 # scrape_mars function
 def scrape_mars()
-    # results dictionary
-    results = {}
+    # init browser
+    browser = init_browser()
 
     # NASA Mars News Scrape 
-    # URL/get/soup
     url = "https://mars.nasa.gov/news.html"
+    browser.visit(url)
+
+    # wait for page load
+    time.sleep(1)
+
+    # html/soup scrape
     html = requests.get(url).text
     soup = bs(html, 'lxml')
 
@@ -30,15 +34,13 @@ def scrape_mars()
         results = {'news_paragraph': paragraph.text}
 
     # JPL Mars Space Images - Featured Image
-    # executable/URL/browser
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    browser = Browser('chrome', **executable_path, headless=False)
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
-
-    # open browser
     browser.visit(url)
 
-    # html/soup
+    # wait for page load
+    time.sleep(1)
+
+    # html/soup scrape
     html = browser.html
     soup = bs(html, 'html.parser')
 
@@ -48,7 +50,6 @@ def scrape_mars()
     results = ['Featured Image'] = featured_image_url
 
     # Mars Facts
-    # url
     url = 'https://space-facts.com/mars/'
 
     # read_html table and preview
@@ -60,9 +61,11 @@ def scrape_mars()
     results = ['html_table'] = html_table 
 
     # Mars Hemispheres
-    # url/visit
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
+
+    # wait for page load
+    time.sleep(1)
 
     # html/soup
     html = browser.html
@@ -96,5 +99,5 @@ def scrape_mars()
     # Quit browser because web scraping is done.
     browser.quit()
 
-    # Return
+    # Return results
     return results
