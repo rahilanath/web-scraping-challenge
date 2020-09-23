@@ -20,7 +20,7 @@ def scrape_mars():
         browser.visit(url)
 
         # wait for page load
-        time.sleep(2)
+        time.sleep(1)
 
         # html/soup scrape
         html = browser.html
@@ -35,20 +35,24 @@ def scrape_mars():
         results = {'news_title': news_title.text, 'news_paragraph': news_paragraph.text}
         
         # JPL Mars Space Images - Featured Image
+        # base URL
+        base_url = 'https://www.jpl.nasa.gov'
+
+        # URL/visit
         url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
         browser.visit(url)
 
-        # wait for page load
-        time.sleep(2)
+        # sleep
+        time.sleep(1)
 
-        # html/soup scrape
+        # html/soup
         html = browser.html
         soup = bs(html, 'html.parser')
 
         # soup find element and slice style string for url
         image = soup.find('article')['style']
-        featured_image_url = image[23:-3]
-        results['Featured Image'] = featured_image_url
+        featured_image_url = base_url + image[23:-3]
+        results['featured_image'] = featured_image_url
 
         # Mars Facts
         url = 'https://space-facts.com/mars/'
@@ -66,7 +70,7 @@ def scrape_mars():
         browser.visit(url)
 
         # wait for page load
-        time.sleep(2)
+        time.sleep(1)
 
         # html/soup
         html = browser.html
