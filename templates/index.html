@@ -24,10 +24,65 @@
                 <div class='row'>
                     <div class='col-md-8'>
                         <h3>Featured Mars Image</h3>
-                            <img alt='Mars Featured Image' src={{mars.featured_image}} class='img-fluid' width='100%' height='auto'>
+                            <img src={{mars.featured_image}} alt='Mars Featured Image' class='img-fluid' width='100%' height='auto'>
                     </div>
                     <div class='col-md-4'>
                         <h3>Mars Facts</h3>{{mars.html_table|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='col-md-12'>
+            <h4 class='title'>Mars Hemispheres</h4>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        <div class='card'>
+                            <div class='card-body'>
+                                <p class='card-text'>
+                                    <img src={{mars.hemispheres[0]['img_url']}} class='img-fluid' width='100%' height='auto'>
+                                </p>
+                            </div>
+                            <div class='card-footer'>
+                                <h3>{{mars.hemispheres[0]['title']}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='card'>
+                            <div class='card-body'>
+                                <p class='card-text'>
+                                    <img src={{mars.hemispheres[1]['img_url']}} class='img-fluid' width='100%' height='auto'>
+                                </p>
+                            </div>
+                            <div class='card-footer'>
+                                <h3>{{mars.hemispheres[1]['title']}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='card'>
+                            <div class='card-body'>
+                                <p class='card-text'>
+                                    <img src={{mars.hemispheres[2]['img_url']}} class='img-fluid' width='100%' height='auto'>
+                                </p>
+                            </div>
+                            <div class='card-footer'>
+                                <h3>{{mars.hemispheres[2]['title']}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='card'>
+                            <div class='card-body'>
+                                <p class='card-text'>
+                                    <img src={{mars.hemispheres[3]['img_url']}} class='img-fluid' width='100%' height='auto'>
+                                </p>
+                            </div>
+                            <div class='card-footer'>
+                                <h3>{{mars.hemispheres[3]['title']}}</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

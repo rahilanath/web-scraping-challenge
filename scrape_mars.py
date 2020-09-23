@@ -95,7 +95,7 @@ def scrape_mars():
             html = browser.html
             soup = bs(html, 'html.parser')
             hemisphere_dict = {}
-            hemisphere_dict['title'] = soup.find('h2', class_='title').text[0:-9]
+            hemisphere_dict['title'] = soup.find('h2', class_='title').text
             hemisphere_dict['img_url'] = soup.find('a', text='Sample')['href']
             hemispheres.append(hemisphere_dict)
         
